@@ -1,0 +1,42 @@
+.myForm {
+    position: relative;
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    padding-bottom: 20px;
+    box-shadow: inset;
+    text-align: center;
+    border-width: 1px;
+    border-radius: 15px;
+    border-color: black;
+    border-style: solid;
+    background: transparent;
+    z-index: 1;
+    -webkit-box-shadow: 14px 14px 7px 1px rgba(0, 0, 0, 0.51);
+    -moz-box-shadow: 14px 14px 7px 1px rgba(0, 0, 0, 0.51);
+    box-shadow: 14px 14px 7px 1px rgba(0, 0, 0, 0.51);
+}
+
+#pizzaStorage {
+    display: flex;
+    flex-flow: row wrap;
+	justify-content: space-evenly;
+}
+
+.pizza {
+	display: block;
+    width: 25%;
+}
+
+.pizza > img {
+    position: relative;
+    top:0;
+    left:0;
+    width:100%;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius: 15px 15px 0 0;
+    margin-bottom: 10px;
+}
