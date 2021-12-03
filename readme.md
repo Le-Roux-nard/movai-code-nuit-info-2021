@@ -37,6 +37,6 @@ En effet le principe de ce script est de trouver tout les éléments `<img>` du 
 
 - site internet avec [la preuve de concept](https://competent-turing-060012.netlify.app/degueulasse/test.html) -- ou voir le dossier degueulasse/test.html
 
-- [Implémentation pratique](https://competent-turing-060012.netlify.app/impl/index.html) -- ou voir le fichier ajax/index.html
+- [Implémentation pratique](https://competent-turing-060012.netlify.app/impl/index.html) -- ou voir le fichier impl/index.html
 
 
