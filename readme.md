@@ -35,8 +35,8 @@ En effet le principe de ce script est de trouver tout les éléments `<img>` du 
 *Le movai code est localisé dans une balise script en bas de chaque fichier où on souhaite implémenter cette magnifique fonctionnalité*
 
 
-- site internet avec [la preuve de concept](https://vigilant-agnesi-f6dff7.netlify.app/degueulasse/test.html) -- ou voir le dossier degueulasse/test.html
+- site internet avec [la preuve de concept](https://competent-turing-060012.netlify.app/degueulasse/test.html) -- ou voir le dossier degueulasse/test.html
 
-- [Implémentation pratique](https://vigilant-agnesi-f6dff7.netlify.app/test.html/ajax/index.html) -- ou voir le fichier ajax/index.html
+- [Implémentation pratique](https://competent-turing-060012.netlify.app/impl/index.html) -- ou voir le fichier ajax/index.html
 
 
