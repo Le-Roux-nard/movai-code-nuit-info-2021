@@ -4,20 +4,6 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function getImageData(imagePath, callback) {
-    var xml = new XMLHttpRequest();
-    xml.onload = function () {
-        var fileReader = new FileReader();
-        fileReader.onloadend = function () {
-            callback(fileReader.result);
-        };
-        fileReader.readAsDataURL(xml.response);
-    };
-    xml.open("GET", imagePath);
-    xml.responseType = "blob";
-    xml.send();
-}
-
 
 for (const image of document.querySelectorAll("img")) {
     image.crossOrigin = "anonymous"
@@ -25,6 +11,25 @@ for (const image of document.querySelectorAll("img")) {
         if (image.crossOrigin != "anonymous") {
             image.crossOrigin = "anonymous";
         } else {
+            const maxDifferentRes = 12;
+            const allCanvas = [];
+            const resizeCanvas = document.createElement("canvas");
+            const resizeCtx = resizeCanvas.getContext("2d");
+            document.body.appendChild(resizeCanvas);
+            for (let i = 0; i < maxDifferentRes; i += 4) {
+                let canvas = document.createElement("canvas");
+                canvas.width = image.naturalWidth;
+                canvas.height = image.naturalHeight;
+                let ctx = canvas.getContext("2d");
+
+                resizeCanvas.width = image.naturalWidth / (i + 1);
+                resizeCanvas.height = image.naturalHeight / (i + 1);
+                resizeCtx.clearRect(0, 0, resizeCanvas.width, resizeCanvas.height);
+                resizeCtx.drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight, 0, 0, resizeCanvas.width, resizeCanvas.height);
+                ctx.drawImage(resizeCanvas, 0, 0, canvas.width, canvas.height);
+                allCanvas.push(canvas);
+            }
+            // return;
             const firstCanvas = document.createElement("canvas");
             const firstCtx = firstCanvas.getContext("2d");
             firstCanvas.crossOrigin = "anonymous";
@@ -41,82 +46,31 @@ for (const image of document.querySelectorAll("img")) {
             const secondCtx = secondCanvas.getContext("2d");
 
             image.parentNode.replaceChild(secondCanvas, image);
-            firstCtx.drawImage(image, 0, 0);
-            // secondCtx.drawImage(image, 0,0);
+            console.log(allCanvas)
+            for await (const resizedCanvas of allCanvas.reverse()) {
+                let r = 0, deg = 0;
+                while (r < Math.max(image.naturalHeight, image.naturalHeight)) {
+                    let x = 1, y = 0;
+                    x = Math.cos(deg) * r + image.naturalWidth / 2;
+                    y = Math.sin(deg) * r + image.naturalHeight / 2;
 
-            const drawnPixel = new Array(imageWidth);
-            for (let i = 0; i < imageWidth; i++) {
-                drawnPixel[i] = new Array(imageHeight).fill(false);
-            }
-            var width = 0; // width
-            var height = 0; // height
-
-            for (height = 0; height < imageHeight - 1; height++) {
-                var pixelInfo = firstCtx.getImageData(width, height, 1, 1);
-                secondCtx.fillStyle = `rgba(${pixelInfo.data[0]},${pixelInfo.data[1]},${pixelInfo.data[2]},${pixelInfo.data[3]})`;
-                secondCtx.fillRect(width, height, 1, 1);
-                drawnPixel[width][height] = true;
-                //wait 10 seconds
-                await new Promise(async (resolve) => { await setTimeout(resolve, 1) });
-            }
-
-            for (width = 0; width < imageWidth - 1; width++) {
-                let pixelInfo = firstCtx.getImageData(width, height, 1, 1);
-                secondCtx.fillStyle = `rgba(${pixelInfo.data[0]},${pixelInfo.data[1]},${pixelInfo.data[2]},${pixelInfo.data[3]})`;
-                secondCtx.fillRect(width, height, 1, 1);
-                drawnPixel[width][height] = true;
-                //wait 10 seconds
-                await new Promise(async (resolve) => { await setTimeout(resolve, 1) });
-            }
-
-            for (height = imageHeight - 1; height > 0; height--) {
-                let pixelInfo = firstCtx.getImageData(width, height, 1, 1);
-                secondCtx.fillStyle = `rgba(${pixelInfo.data[0]},${pixelInfo.data[1]},${pixelInfo.data[2]},${pixelInfo.data[3]})`;
-                secondCtx.fillRect(width, height, 1, 1);
-                drawnPixel[width][height] = true;
-                //wait 10 seconds
-                await new Promise(async (resolve) => { await setTimeout(resolve, 1) });
-            }
-
-            for (width = imageWidth - 1; width > 0; width--) {
-                let pixelInfo = firstCtx.getImageData(width, height, 1, 1);
-                secondCtx.fillStyle = `rgba(${pixelInfo.data[0]},${pixelInfo.data[1]},${pixelInfo.data[2]},${pixelInfo.data[3]})`;
-                secondCtx.fillRect(width, height, 1, 1);
-                drawnPixel[width][height] = true;
-                //wait 10 seconds
-                await new Promise(async (resolve) => { await setTimeout(resolve, 1) });
-            }
-
-
-            while (!drawnPixel.every(heightArr => heightArr.every(drawn => drawn === true))) {
-                let pixelFound = false;
-                while (!pixelFound) {
-                    width = getRandomInt(0, imageWidth - 1);
-                    height = 0;
-                    if (drawnPixel[width].every(drawn => drawn === true)) {
-
-                        continue;
-                    } else {
-                        let heightFound;
-                        while (!heightFound) {
-                            height = getRandomInt(0, imageHeight - 1);
-                            if (drawnPixel[width][height] !== true) {
-                                heightFound = true;
-                            }
-                        }
-                        pixelFound = true;
+                    deg += Math.PI / 60;
+                    if (deg % (Math.PI) < 1) {
+                        // console.error("PUTE")
+                        r += 0.02;
                     }
+
+                    let resizedCtx = resizedCanvas.getContext("2d");
+                    let pixelInfo = resizedCtx.getImageData(x, y, 1, 1);
+                    secondCtx.fillStyle = `rgba(${pixelInfo.data[0]},${pixelInfo.data[1]},${pixelInfo.data[2]},${pixelInfo.data[3]})`;
+                    secondCtx.fillRect(x, y, 1, 1);
+                    // wait 10 seconds
+                    await new Promise(async (resolve) => {
+                        setTimeout(() =>
+                            resolve()
+                            , 0.00000000000001)
+                    });
                 }
-                let pixelInfo = firstCtx.getImageData(width, height, 1, 1);
-                secondCtx.fillStyle = `rgba(${pixelInfo.data[0]},${pixelInfo.data[1]},${pixelInfo.data[2]},${pixelInfo.data[3]})`;
-                secondCtx.fillRect(width, height, 1, 1);
-                drawnPixel[width][height] = true;
-                //wait 10 seconds
-                await new Promise(async (resolve) => {
-                    setTimeout(() =>
-                        resolve()
-                        , 1)
-                });
             }
         }
     }
