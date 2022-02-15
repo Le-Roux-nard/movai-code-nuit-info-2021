@@ -30,7 +30,7 @@
     width: 25%;
 }
 
-.pizza > img {
+.pizza > img, .pizza > canvas {
     position: relative;
     top:0;
     left:0;

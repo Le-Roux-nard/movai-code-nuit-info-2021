@@ -15,8 +15,9 @@ for (const image of document.querySelectorAll("img")) {
             const allCanvas = [];
             const resizeCanvas = document.createElement("canvas");
             const resizeCtx = resizeCanvas.getContext("2d");
-            document.body.appendChild(resizeCanvas);
-            for (let i = 0; i < maxDifferentRes; i += 4) {
+            // document.body.appendChild(resizeCanvas);
+            
+            for (let i = 0; i < maxDifferentRes; i += 1) {
                 let canvas = document.createElement("canvas");
                 canvas.width = image.naturalWidth;
                 canvas.height = image.naturalHeight;
@@ -29,12 +30,10 @@ for (const image of document.querySelectorAll("img")) {
                 ctx.drawImage(resizeCanvas, 0, 0, canvas.width, canvas.height);
                 allCanvas.push(canvas);
             }
-            // return;
+            
             const firstCanvas = document.createElement("canvas");
             const firstCtx = firstCanvas.getContext("2d");
             firstCanvas.crossOrigin = "anonymous";
-            const imageWidth = image.naturalWidth;
-            const imageHeight = image.naturalHeight;
             firstCanvas.width = image.naturalWidth;
             firstCanvas.height = image.naturalHeight;
             firstCanvas.id = image.id;
@@ -46,30 +45,28 @@ for (const image of document.querySelectorAll("img")) {
             const secondCtx = secondCanvas.getContext("2d");
 
             image.parentNode.replaceChild(secondCanvas, image);
-            console.log(allCanvas)
+            console.log(allCanvas);
             for await (const resizedCanvas of allCanvas.reverse()) {
-                let r = 0, deg = 0;
-                while (r < Math.max(image.naturalHeight, image.naturalHeight)) {
-                    let x = 1, y = 0;
-                    x = Math.cos(deg) * r + image.naturalWidth / 2;
-                    y = Math.sin(deg) * r + image.naturalHeight / 2;
+                let r = 0, x = 0, y = 0, hyp = 0;
+                x = image.naturalHeight / 2
+                y = image.naturalWidth / 2
+                hyp = Math.sqrt(x * x + y * y);
+                console.log(image.naturalHeight / 2, image.naturalWidth / 2, r,);
 
-                    deg += Math.PI / 60;
-                    if (deg % (Math.PI) < 1) {
-                        // console.error("PUTE")
-                        r += 0.02;
-                    }
+                while (r < hyp) {
 
-                    let resizedCtx = resizedCanvas.getContext("2d");
-                    let pixelInfo = resizedCtx.getImageData(x, y, 1, 1);
-                    secondCtx.fillStyle = `rgba(${pixelInfo.data[0]},${pixelInfo.data[1]},${pixelInfo.data[2]},${pixelInfo.data[3]})`;
-                    secondCtx.fillRect(x, y, 1, 1);
-                    // wait 10 seconds
+                    secondCtx.save();
+                    secondCtx.beginPath();
+                    secondCtx.arc(image.naturalWidth / 2, image.naturalHeight / 2, r, 0, Math.PI * 2, false);
+                    secondCtx.clip();
+                    secondCtx.drawImage(resizedCanvas, 0, 0, secondCanvas.width, secondCanvas.height);
+                    secondCtx.restore();
+                    r += 1;
                     await new Promise(async (resolve) => {
                         setTimeout(() =>
-                            resolve()
-                            , 0.00000000000001)
+                            resolve(), 1)
                     });
+
                 }
             }
         }
