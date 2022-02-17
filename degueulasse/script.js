@@ -4,7 +4,6 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
 for (const image of document.querySelectorAll("img")) {
     image.crossOrigin = "anonymous"
     image.onload = async () => {
@@ -32,7 +31,6 @@ for (const image of document.querySelectorAll("img")) {
             }
             
             const firstCanvas = document.createElement("canvas");
-            const firstCtx = firstCanvas.getContext("2d");
             firstCanvas.crossOrigin = "anonymous";
             firstCanvas.width = image.naturalWidth;
             firstCanvas.height = image.naturalHeight;
@@ -45,13 +43,11 @@ for (const image of document.querySelectorAll("img")) {
             const secondCtx = secondCanvas.getContext("2d");
 
             image.parentNode.replaceChild(secondCanvas, image);
-            console.log(allCanvas);
             for await (const resizedCanvas of allCanvas.reverse()) {
                 let r = 0, x = 0, y = 0, hyp = 0;
                 x = image.naturalHeight / 2
                 y = image.naturalWidth / 2
                 hyp = Math.sqrt(x * x + y * y);
-                console.log(image.naturalHeight / 2, image.naturalWidth / 2, r,);
 
                 while (r < hyp) {
 
