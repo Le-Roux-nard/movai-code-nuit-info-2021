@@ -6,6 +6,13 @@ Dans la nuit du 2 au 3 décembre 2021 nous avons participé à un événement no
 
 Durant la nuit nous nous sommes concentré sur un des défis annexes donné par un des partenaires de l'événement, le Movai Code. 
 
+# Développé par :
+
+Maxime Guinoiseau <br>
+Nathan Pollart <br>
+[Théo LE BAIL](https://github.com/TLBail/)
+
+
 ## Énoncé : 
 ```
 Bien coder, optimiser, respecter des conventions... Y'EN A MARRE !
@@ -45,7 +52,4 @@ En effet le principe de ce script est de trouver tout les éléments `<img>` du 
 
 - [Implémentation pratique](https://competent-turing-060012.netlify.app/impl/index.html) -- ou voir le fichier impl/index.html
 
-# Développé par :
 
-Maxime Guinoiseau <br>
-Nathan Pollart
