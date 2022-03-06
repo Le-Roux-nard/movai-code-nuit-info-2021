@@ -8,9 +8,11 @@ Durant la nuit nous nous sommes concentré sur un des défis annexes donné par 
 
 # Développé par :
 
-Maxime Guinoiseau <br>
-Nathan Pollart <br>
-[Théo LE BAIL](https://github.com/TLBail/)
+[Maxime Guinoiseau](https://maxime.guinoiseau.com/) <br>
+[Nathan Pollart](http://www.npollart.site/) <br>
+[Théo Le Bail](https://portfolio.tlbail.fr/) <br>
+[Simon Brault](https://portfolio.simon-brault.com/)
+
 
 
 ## Énoncé : 
