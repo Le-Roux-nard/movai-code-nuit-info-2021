@@ -48,3 +48,4 @@ En effet le principe de ce script est de trouver tout les éléments `<img>` du 
 # Développé par :
 
 Maxime Guinoiseau
+Nathan Pollart
