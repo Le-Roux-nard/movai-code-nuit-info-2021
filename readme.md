@@ -1,4 +1,12 @@
-Énoncé : 
+# Le Movai Code
+
+## Contexte :
+
+Dans la nuit du 2 au 3 décembre 2021 nous avons participé à un événement nommé **La nuit de l'info**. C'est une compétition nationale qui réunit étudiants, enseignants et entreprises pour travailler ensemble sur le développement d’une application web.
+
+Durant la nuit nous nous sommes concentré sur un des défis annexes donné par un des partenaires de l'événement, le Movai Code. 
+
+## Énoncé : 
 ```
 Bien coder, optimiser, respecter des conventions... Y'EN A MARRE !
 
@@ -17,22 +25,20 @@ Pour plus de détails / quelques exemples, vous pouvez consulter https://movaico
 Jeu gratuit sans obligation d'achat, demandez conseil à votre pharmacien
 ```
 
-**Elements attendus**
+## Elements attendus
 
 Nous attendons beaucoup de créativité dans la médiocrité, il est temps de montrer que vous aussi vous pouvez avoir 5/20 en DS.
 
 Nous serons attentifs au soin non apporté, mais attention nous rappelons : IL FAUT QUE ÇA MARCHE !
 
 
-**Résultat :**
+## Résultat :
 
 Nous sommes partis sur un algorithme permettant de charger des images mais *un peu modifié...*
 
-En effet le principe de ce script est de trouver tout les éléments `<img>` du document HTML, de les remplacer par des `<canvas>` puis d'afficher la source pixel par pixel !
+En effet le principe de ce script est de trouver tout les éléments `<img>` du document HTML, de les remplacer par des `<canvas>` puis d'afficher l'image très floue puis au fur et à mesure de la rendre de plus en plus nette en passant par de multiples étapes intermédiaires.
 
-⚠ Attention le chargement se met en pause au changement d'onglet ainsi il faudra absolument avoir l'onglet au premier plan et patienter *looooongtemps* pour profiter de la page web !
-
-*Le movai code est localisé dans une balise script en bas de chaque fichier où on souhaite implémenter cette magnifique fonctionnalité*
+⚠ Attention le chargement se met en pause au changement d'onglet ainsi il faudra absolument avoir l'onglet au premier plan et patienter.
 
 
 - site internet avec [la preuve de concept](https://competent-turing-060012.netlify.app/degueulasse/test.html) -- ou voir le dossier degueulasse/test.html
