@@ -54,4 +54,6 @@ En effet le principe de ce script est de trouver tout les éléments `<img>` du 
 
 - [Implémentation pratique](https://competent-turing-060012.netlify.app/impl/index.html) -- ou voir le fichier impl/index.html
 
+## Participants au projet
 
+![](https://epic-games-unofficial-api.herokuapp.com/api/github/le-roux-nard/movai-code-nuit-info-2021)
